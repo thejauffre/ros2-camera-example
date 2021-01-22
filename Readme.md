@@ -42,6 +42,8 @@ entry_points={
 ```
 Build using colcon, then launch.
 
+**Note**: you can also use *cmake* to properly setup a package before building it; i.e. specifying a compiler (c++/g++/gcc) and install directories.
+
 ## Useful commands
 First you have to source the ROS2 environment (your script is in */scripts/ros2_launch.sh*).  
 **Display active nodes**: *rqt_graph* ;   
