@@ -1,9 +1,11 @@
 # ROS2 workspace example
 ## Description
-This is a sample ROS2 workspace, with three packages:  
+This is a sample ROS2 workspace, with a package and two main dependencies:  
 1. **v4l2_camera**: camera publisher (*/image_raw*) - [follow this guide](https://index.ros.org/r/v4l2_camera/)  
+Install using *sudo apt install ros-foxy-v4l2-camera*  
 2. **vision_opencv**: set of tools with cv_bridge to convert image_raw data to opencv (and other things) - [follow this guide](https://index.ros.org/p/cv_bridge/github-ros-perception-vision_opencv/)  
-3. **mypkg**: simple image publisher created following [this guide](https://index.ros.org/doc/ros2/Tutorials/Creating-Your-First-ROS2-Package/)
+Install using *sudo apt install ros-foxy-vision-opencv*
+3. **mypkg**: simple image subscriber/publisher created following [this guide](https://index.ros.org/doc/ros2/Tutorials/Creating-Your-First-ROS2-Package/)
 
 ## Sequence to create a new package
 
@@ -50,3 +52,4 @@ First you have to source the ROS2 environment (your script is in */scripts/ros2_
 **Build a package (or all)** *colcon build --packages-select mypkg* (or *colcon build*) ;  
 **Remember: source installed packages**: *source install/local_setup.bash* from within the workspace;  
 **Launch your custom node**: *ros2 run mypkg listener* ;  
+**Launch via multicast**: *ROS_DOMAIN_ID=13 ros2 run mypkg publisher* ;
