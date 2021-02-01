@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
 		'listener = mypkg.mypkg_function:main',
+        'publisher = mypkg.mypkg_pub:main',
         ],
     },
 )

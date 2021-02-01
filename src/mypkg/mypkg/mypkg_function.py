@@ -4,11 +4,13 @@ from sensor_msgs.msg import Image
 from rclpy.qos import qos_profile_sensor_data
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
+import numpy as np
 
 class MinimalSubscriber(Node):
 
     def __init__(self):
-        super().__init__('minimal_subscriber')
+        super().__init__('mypkg_subscriber')
+        super().__init__('mypkg_publisher')
         self.subscription = self.create_subscription(
 			Image,
 			'/image_raw',
@@ -16,18 +18,34 @@ class MinimalSubscriber(Node):
 			qos_profile_sensor_data)
         self.subscription  # prevent unused variable warning
         self.value = 0
+        self.publisher_ = self.create_publisher(Image, 'image_raw_mod', 10)
+        timer_period = 0.5  # seconds
+        self.i = 0
         self.bridge = CvBridge()
 
     def listener_callback(self, image):
         print("In callback")
         cv_image = self.bridge.imgmsg_to_cv2(image, desired_encoding='bgr8')
-        cv2.imshow('mywindowze', cv_image)
+
+        gray = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
+
+        grad_x = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)
+        grad_y = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)
+
+        abs_grad_x = cv2.convertScaleAbs(grad_x)
+        abs_grad_y = cv2.convertScaleAbs(grad_y)
+
+        grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
+        outres = cv2.cvtColor(grad, cv2.COLOR_GRAY2BGR)
+        self.publisher_.publish(self.bridge.cv2_to_imgmsg(np.array(outres), "bgr8"))
+        self.get_logger().info('Publishing an image')
+        cv2.imshow('mywindowze', outres)
         k = cv2.waitKey(30) & 0xff
 
         #Press 'c' to save frame
         if k == 99:
             filename = '/home/andrea/Desktop/Capture_'+str(self.value)+'.jpg'
-            cv2.imwrite(filename, cv_image)
+            cv2.imwrite(filename, outres)
             self.value+=1
 
 def main(args=None):
