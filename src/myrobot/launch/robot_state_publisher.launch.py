@@ -36,7 +36,7 @@ def generate_launch_description():
 
     urdf = os.path.join(
         get_package_share_directory(package_name),
-        'urdfs',
+        'models',
         urdf_file_name)
 
     return LaunchDescription([

@@ -16,17 +16,15 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
-        (os.path.join('share', package_name), glob('models/*')),
-        (os.path.join('share', package_name, 'urdfs'), glob('urdfs/*.*')),
-        (os.path.join('share', package_name, 'sdfs'), glob('sdfs/*.*')),
-        (os.path.join('share', package_name, 'sdfs', 'turtlebot3_burger'), glob('sdfs/turtlebot3_burger/*.*')),
-        (os.path.join('share', package_name, 'sdfs', 'turtlebot3_burger','meshes'), glob('sdfs/turtlebot3_burger/meshes/*.*')),
-        (os.path.join('share', package_name, 'sdfs', 'turtlebot3_world'), glob('sdfs/turtlebot3_world/*.*')),
-        (os.path.join('share', package_name, 'sdfs', 'turtlebot3_world','meshes'), glob('sdfs/turtlebot3_world/meshes/*.*')),
-        (os.path.join('share', package_name, 'meshes'), glob('meshes/*.*')),
-        (os.path.join('share', package_name, 'meshes', 'bases'), glob('meshes/bases/*.*')),
-        (os.path.join('share', package_name, 'meshes', 'sensors'), glob('meshes/sensors/*.*')),
-        (os.path.join('share', package_name, 'meshes', 'wheels'), glob('meshes/wheels/*.*')),
+        (os.path.join('share', package_name, 'models'), glob('models/*.*')),
+        (os.path.join('share', package_name, 'models', 'turtlebot3_burger'), glob('models/turtlebot3_burger/*.*')),
+        (os.path.join('share', package_name, 'models', 'turtlebot3_burger','meshes'), glob('models/turtlebot3_burger/meshes/*.*')),
+        (os.path.join('share', package_name, 'models', 'turtlebot3_world'), glob('models/turtlebot3_world/*.*')),
+        (os.path.join('share', package_name, 'models', 'turtlebot3_world','meshes'), glob('models/turtlebot3_world/meshes/*.*')),
+        (os.path.join('share', package_name, 'models', 'meshes'), glob('models/meshes/*.*')),
+        (os.path.join('share', package_name, 'models', 'meshes', 'bases'), glob('models/meshes/bases/*.*')),
+        (os.path.join('share', package_name, 'models', 'meshes', 'sensors'), glob('models/meshes/sensors/*.*')),
+        (os.path.join('share', package_name, 'models', 'meshes', 'wheels'), glob('models/meshes/wheels/*.*')),
 
     ],
     install_requires=['setuptools'],
@@ -38,7 +36,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            # 'state_publisher = myrobot.state_publisher:main'
+            'state_publisher = myrobot.state_publisher:main'
         ],
     },
 )
