@@ -1,55 +1,56 @@
 <?xml version='1.0'?>
 <sdf version="1.4">
   <model name="structure">
-    <pose>0 0 0.5 0 0 0</pose>
+    <pose>0 0 0 0 0 0</pose>
     <static>true</static>
-    <link name="base_footprint"/>
 
-    <link name="link">
+    <link name="main_base">
+      <pose>0 0 3   0 0 0</pose>
       <inertial>
         <mass>1.0</mass>
         <inertia> <!-- inertias are tricky to compute -->
           <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
-          <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+          <ixx>100</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
           <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
           <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
-          <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+          <iyy>100</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
           <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
-          <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+          <izz>100</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
         </inertia>
       </inertial>
       <collision name="collision">
         <geometry>
           <box>
-            <size>1 1 1</size>
+            <size>0.15 4 0.15</size>
           </box>
         </geometry>
       </collision>
       <visual name="visual">
         <geometry>
           <box>
-            <size>1 1 1</size>
+            <size>0.15 4 0.15</size>
           </box>
         </geometry>
       </visual>
+      
 
-      <sensor name="hls_lfcd_lds1" type="ray">
+      <!-- <sensor name="hls_lfcd_lds1" type="ray">
         <always_on>true</always_on>
         <visualize>true</visualize>
-        <pose>-0.032 0 5.171 0 0 0</pose>
+        <pose>0 -2 3 0 0 0</pose>
         <update_rate>5</update_rate>
         <ray>
           <scan>
-            <horizontal>
-              <samples>360</samples>
+            <vertical>
+              <samples>180</samples>
               <resolution>1.000000</resolution>
               <min_angle>0.000000</min_angle>
-              <max_angle>6.280000</max_angle>
-            </horizontal>
+              <max_angle>1.57</max_angle>
+          </vertical>
           </scan>
           <range>
             <min>0.120000</min>
-            <max>3.5</max>
+            <max>5</max>
             <resolution>0.015000</resolution>
           </range>
           <noise>
@@ -60,7 +61,6 @@
         </ray>
         <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
           <ros>
-            <!-- <namespace>/tb3</namespace> -->
             <remapping>~/out:=scan1</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
@@ -71,20 +71,20 @@
       <sensor name="hls_lfcd_lds2" type="ray">
         <always_on>true</always_on>
         <visualize>true</visualize>
-        <pose>-0.032 0 10.171 0 0 0</pose>
+        <pose>0 2 3 0 0 0</pose>
         <update_rate>5</update_rate>
         <ray>
           <scan>
-            <horizontal>
-              <samples>360</samples>
+            <vertical>
+              <samples>180</samples>
               <resolution>1.000000</resolution>
               <min_angle>0.000000</min_angle>
-              <max_angle>6.280000</max_angle>
-            </horizontal>
+              <max_angle>1.57</max_angle>
+          </vertical>
           </scan>
           <range>
             <min>0.120000</min>
-            <max>3.5</max>
+            <max>5</max>
             <resolution>0.015000</resolution>
           </range>
           <noise>
@@ -95,14 +95,96 @@
         </ray>
         <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
           <ros>
-            <!-- <namespace>/tb3</namespace> -->
             <remapping>~/out:=scan2</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
           <frame_name>base_scan2</frame_name>
         </plugin>
-      </sensor>
+      </sensor> -->
 
     </link>
+
+    <link name="side_one">
+      <pose>0 -2 1.5   1.57 0 0</pose>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia> 
+          <ixx>100</ixx>     
+          <ixy>0.0</ixy>    
+          <ixz>0.0</ixz>    
+          <iyy>100</iyy>      
+          <iyz>0.0</iyz>     
+          <izz>100</izz>  
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.15 0.15 3</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.15 4 0.15</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="side_two">
+      <pose>0 2 1.5   1.57 0 0</pose>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia> 
+          <ixx>100</ixx> 
+          <ixy>0.0</ixy> 
+          <ixz>0.0</ixz>
+          <iyy>100</iyy> 
+          <iyz>0.0</iyz>
+          <izz>100</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.15 4 0.15</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.15 4 0.15</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+   <!--  <joint name="boxconnect1" type="fixed">
+      <pose relative_to="main_base" >0 0 0</pose>
+      <parent>main_base</parent>
+      <child>laser1_link</child>
+    </joint>
+
+    <joint name="boxconnect2" type="fixed">
+      <pose relative_to="main_base" >0 0 0</pose>
+      <parent>main_base</parent>
+      <child>laser2_link</child>
+    </joint>
+
+    <joint name="sideconn1" type="fixed">
+      <pose relative_to="main_base" >0 0 0</pose>
+      <parent>main_base</parent>
+      <child>side_one</child>
+    </joint>
+
+    <joint name="sideconn2" type="fixed">
+      <pose relative_to="main_base" >0 0 0</pose>
+      <parent>main_base</parent>
+      <child >side_two</child>
+    </joint> -->
+
   </model>
 </sdf>
