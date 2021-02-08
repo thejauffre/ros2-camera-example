@@ -30,7 +30,7 @@ package_name = 'myrobot'
 def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-    urdf_file_name = 'turtlebot3_burger.urdf'
+    urdf_file_name = 'structure.urdf'
 
     print('urdf_file_name : {}'.format(urdf_file_name))
 
@@ -38,6 +38,16 @@ def generate_launch_description():
         get_package_share_directory(package_name),
         'models',
         urdf_file_name)
+
+    x = '0'
+    y ='0'
+    z ='0'
+    roll ='0'
+    pitch = '0'
+    yaw ='0'
+    link_1 = 'link'
+    base_scan1 = 'base_scan1'
+    base_scan2 = 'base_scan2'
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -52,4 +62,20 @@ def generate_launch_description():
             output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
             arguments=[urdf]),
+
+        Node(
+            package='tf2_ros',
+            node_executable='static_transform_publisher',
+            node_name='static_transform_publisher',
+            output='screen',
+            arguments=[x, y, z, yaw, pitch, roll, link_1, base_scan1],
+        ),
+
+        Node(
+            package='tf2_ros',
+            node_executable='static_transform_publisher',
+            node_name='static_transform_publisher',
+            output='screen',
+            arguments=[x, y, z, yaw, pitch, roll, link_1, base_scan2],
+        )
     ])
