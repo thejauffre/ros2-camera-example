@@ -53,3 +53,8 @@ First you have to source the ROS2 environment (your script is in */scripts/ros2_
 **Remember: source installed packages**: *source install/local_setup.bash* from within the workspace;  
 **Launch your custom node**: *ros2 run mypkg listener* ;  
 **Launch via multicast**: *ROS_DOMAIN_ID=13 ros2 run mypkg publisher* ;
+
+
+## Additional notes  
+**Original forklift model**: [downloaded from here](https://open3dmodel.com/3d-models/forklift_476994.html/)  
+
