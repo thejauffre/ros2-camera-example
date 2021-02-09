@@ -38,16 +38,30 @@ def generate_launch_description():
         get_package_share_directory(package_name),
         'models',
         urdf_file_name)
-
-    x = '0'
-    y ='0'
-    z ='0'
-    roll ='0'
-    pitch = '0'
-    yaw ='0'
-    link_1 = 'link'
+    
+    link_main = 'link'
+    x_1 = '0'
+    y_1 ='-2'
+    z_1 ='3'
+    roll_1 ='0'
+    pitch_1 = '1.57'
+    yaw_1 ='0'
     base_scan1 = 'base_scan1'
+
+    x_2 = '0'
+    y_2 ='2'
+    z_2 ='3'
+    roll_2 ='0'
+    pitch_2 = '1.57'
+    yaw_2 ='3.14'
     base_scan2 = 'base_scan2'
+
+    x_0 = '0'
+    y_0 ='0'
+    z_0 ='0'
+    roll_0 ='0'
+    pitch_0 = '0'
+    yaw_0 ='0'
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -62,13 +76,14 @@ def generate_launch_description():
             output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
             arguments=[urdf]),
-
+            
+## Laser data transforms
         Node(
             package='tf2_ros',
             node_executable='static_transform_publisher',
             node_name='static_transform_publisher',
             output='screen',
-            arguments=[x, y, z, yaw, pitch, roll, link_1, base_scan1],
+            arguments=[x_1, y_1, z_1, yaw_1, pitch_1, roll_1, link_main, base_scan1],
         ),
 
         Node(
@@ -76,6 +91,37 @@ def generate_launch_description():
             node_executable='static_transform_publisher',
             node_name='static_transform_publisher',
             output='screen',
-            arguments=[x, y, z, yaw, pitch, roll, link_1, base_scan2],
-        )
+            arguments=[x_2, y_2, z_2, yaw_2, pitch_2, roll_2, link_main, base_scan2],
+        ),
+
+## Static links transforms
+        Node(
+            package='tf2_ros',
+            node_executable='static_transform_publisher',
+            node_name='static_transform_publisher',
+            output='screen',
+            arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, 'laser1_link', link_main],
+        ),
+        Node(
+            package='tf2_ros',
+            node_executable='static_transform_publisher',
+            node_name='static_transform_publisher',
+            output='screen',
+            arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, 'laser2_link', link_main],
+        ),
+        Node(
+            package='tf2_ros',
+            node_executable='static_transform_publisher',
+            node_name='static_transform_publisher',
+            output='screen',
+            arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, 'side_one', link_main],
+        ),
+        Node(
+            package='tf2_ros',
+            node_executable='static_transform_publisher',
+            node_name='static_transform_publisher',
+            output='screen',
+            arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, 'side_two', link_main],
+        ),
+
     ])
