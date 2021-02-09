@@ -1,27 +1,28 @@
 <?xml version='1.0'?>
 <sdf version="1.4">
   <model name="forklift">
+    <scale>1.2 1.2 1.2</scale>
     <pose>0 0 0 0 0 0</pose>
     <static>true</static>
 
-    <link name="forklift_base">
+    <link name="forklift_chassis">
       <pose>0 0 0   0 0 0</pose>
       <inertial>
         <mass>1.0</mass>
-        <inertia> <!-- inertias are tricky to compute -->
-          <ixx>100</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
-          <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
-          <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
-          <iyy>100</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
-          <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
-          <izz>100</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        <inertia>
+          <ixx>100</ixx> 
+          <ixy>0.0</ixy> 
+          <ixz>0.0</ixz> 
+          <iyy>100</iyy> 
+          <iyz>0.0</iyz> 
+          <izz>100</izz>
         </inertia>
       </inertial>
       <collision name="collision_forklift">
         <geometry>
           <mesh>
-            <uri>model://meshes/bases/fork_monke.stl</uri>
-            <scale>0.1 0.1 0.1</scale>
+            <uri>model://forklift/meshes/forklift_chassis.stl</uri>
+            <scale>0.01 0.01 0.01</scale>
           </mesh>
         </geometry>
       </collision>
@@ -29,13 +30,115 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
-            <uri>model://meshes/bases/fork_monke.stl</uri>
-            <scale>0.1 0.1 0.1</scale>
+            <uri>model://forklift/meshes/forklift_chassis.stl</uri>
+            <scale>0.01 0.01 0.01</scale>
           </mesh>
         </geometry>
       </visual>
 
     </link>
+
+    <link name="left_wheel">
+      <pose>0 0 0   0 0 0</pose>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>100</ixx> 
+          <ixy>0.0</ixy> 
+          <ixz>0.0</ixz> 
+          <iyy>100</iyy> 
+          <iyz>0.0</iyz> 
+          <izz>100</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision_forkliftleft_wheel">
+        <geometry>
+          <mesh>
+            <uri>model://forklift/meshes/forklift_left_wheel.stl</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="forklift_visualleft_wheel">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://forklift/meshes/forklift_left_wheel.stl</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+
+    </link>
+
+
+    <link name="right_wheel">
+      <pose>0 0 0   0 0 0</pose>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>100</ixx> 
+          <ixy>0.0</ixy> 
+          <ixz>0.0</ixz> 
+          <iyy>100</iyy> 
+          <iyz>0.0</iyz> 
+          <izz>100</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision_right_wheel">
+        <geometry>
+          <mesh>
+            <uri>model://forklift/meshes/forklift_right_wheel.stl</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual_right_wheel">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://forklift/meshes/forklift_right_wheel.stl</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+
+    </link>
+
+
+    <link name="back_wheel">
+      <pose>0 0 0   0 0 0</pose>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>100</ixx> 
+          <ixy>0.0</ixy> 
+          <ixz>0.0</ixz> 
+          <iyy>100</iyy> 
+          <iyz>0.0</iyz> 
+          <izz>100</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision_back_wheel">
+        <geometry>
+          <mesh>
+            <uri>model://forklift/meshes/forklift_back_wheel.stl</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="collision_back_wheel">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://forklift/meshes/forklift_back_wheel.stl</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+
+    </link>
+
 
   </model>
 </sdf>

@@ -25,7 +25,8 @@ setup(
         (os.path.join('share', package_name, 'models', 'meshes', 'bases'), glob('models/meshes/bases/*.*')),
         (os.path.join('share', package_name, 'models', 'meshes', 'sensors'), glob('models/meshes/sensors/*.*')),
         (os.path.join('share', package_name, 'models', 'meshes', 'wheels'), glob('models/meshes/wheels/*.*')),
-
+        (os.path.join('share', package_name, 'models', 'forklift'), glob('models/forklift/*.*')),
+        (os.path.join('share', package_name, 'models', 'forklift', 'meshes'), glob('models/forklift/meshes/*.*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

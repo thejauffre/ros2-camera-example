@@ -52,4 +52,9 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([launch_file_dir, '/robot_state_publisher.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time}.items(),
         ),
+        
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([launch_file_dir, '/forklift_state_publisher.launch.py']),
+            launch_arguments={'use_sim_time': use_sim_time}.items(),
+        ),
     ])
