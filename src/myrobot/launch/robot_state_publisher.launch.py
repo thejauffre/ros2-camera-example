@@ -41,16 +41,16 @@ def generate_launch_description():
     
     link_main = 'link'
     x_1 = '0'
-    y_1 ='-2'
-    z_1 ='3'
+    y_1 ='-1.9'
+    z_1 ='2.9'
     roll_1 ='0'
     pitch_1 = '1.57'
     yaw_1 ='0'
     base_scan1 = 'base_scan1'
 
     x_2 = '0'
-    y_2 ='2'
-    z_2 ='3'
+    y_2 ='1.9'
+    z_2 ='2.9'
     roll_2 ='0'
     pitch_2 = '1.57'
     yaw_2 ='3.14'
@@ -76,7 +76,7 @@ def generate_launch_description():
             output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
             arguments=[urdf]),
-            
+
 ## Laser data transforms
         Node(
             package='tf2_ros',
