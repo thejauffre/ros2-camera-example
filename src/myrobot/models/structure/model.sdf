@@ -5,7 +5,7 @@
     <static>true</static>
 
     <link name="main_base">
-      <pose>0 0 3   0 0 0</pose>
+      <pose>0 0 3.5   0 0 0</pose>
       <inertial>
         <mass>1.0</mass>
         <inertia> <!-- inertias are tricky to compute -->
@@ -18,13 +18,13 @@
           <izz>100</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
         </inertia>
       </inertial>
-      <collision name="collision">
+      <!-- <collision name="collision">
         <geometry>
           <box>
             <size>0.15 4 0.15</size>
           </box>
         </geometry>
-      </collision>
+      </collision> -->
       <visual name="visual">
         <geometry>
           <box>
@@ -32,75 +32,6 @@
           </box>
         </geometry>
       </visual>
-      
-
-      <!-- <sensor name="hls_lfcd_lds1" type="ray">
-        <always_on>true</always_on>
-        <visualize>true</visualize>
-        <pose>0 -2 3 0 0 0</pose>
-        <update_rate>5</update_rate>
-        <ray>
-          <scan>
-            <vertical>
-              <samples>180</samples>
-              <resolution>1.000000</resolution>
-              <min_angle>0.000000</min_angle>
-              <max_angle>1.57</max_angle>
-          </vertical>
-          </scan>
-          <range>
-            <min>0.120000</min>
-            <max>5</max>
-            <resolution>0.015000</resolution>
-          </range>
-          <noise>
-            <type>gaussian</type>
-            <mean>0.0</mean>
-            <stddev>0.01</stddev>
-          </noise>
-        </ray>
-        <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
-          <ros>
-            <remapping>~/out:=scan1</remapping>
-          </ros>
-          <output_type>sensor_msgs/LaserScan</output_type>
-          <frame_name>base_scan1</frame_name>
-        </plugin>
-      </sensor>
-
-      <sensor name="hls_lfcd_lds2" type="ray">
-        <always_on>true</always_on>
-        <visualize>true</visualize>
-        <pose>0 2 3 0 0 0</pose>
-        <update_rate>5</update_rate>
-        <ray>
-          <scan>
-            <vertical>
-              <samples>180</samples>
-              <resolution>1.000000</resolution>
-              <min_angle>0.000000</min_angle>
-              <max_angle>1.57</max_angle>
-          </vertical>
-          </scan>
-          <range>
-            <min>0.120000</min>
-            <max>5</max>
-            <resolution>0.015000</resolution>
-          </range>
-          <noise>
-            <type>gaussian</type>
-            <mean>0.0</mean>
-            <stddev>0.01</stddev>
-          </noise>
-        </ray>
-        <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
-          <ros>
-            <remapping>~/out:=scan2</remapping>
-          </ros>
-          <output_type>sensor_msgs/LaserScan</output_type>
-          <frame_name>base_scan2</frame_name>
-        </plugin>
-      </sensor> -->
 
     </link>
 
@@ -117,13 +48,13 @@
           <izz>100</izz>  
         </inertia>
       </inertial>
-      <collision name="collision">
+      <!-- <collision name="collision">
         <geometry>
           <box>
             <size>0.15 0.15 3</size>
           </box>
         </geometry>
-      </collision>
+      </collision> -->
       <visual name="visual">
         <geometry>
           <box>
@@ -146,13 +77,13 @@
           <izz>100</izz>
         </inertia>
       </inertial>
-      <collision name="collision">
+      <!-- <collision name="collision">
         <geometry>
           <box>
             <size>0.15 4 0.15</size>
           </box>
         </geometry>
-      </collision>
+      </collision> -->
       <visual name="visual">
         <geometry>
           <box>
@@ -162,7 +93,80 @@
       </visual>
     </link>
 
-   <!--  <joint name="boxconnect1" type="fixed">
+<link name="laser1_link">
+  <sensor name="hls_lfcd_lds1" type="ray">
+    <always_on>true</always_on>
+    <visualize>true</visualize>
+    <pose>0 -2 3 0 1.57 0</pose>
+    <update_rate>5</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>180</samples>
+          <resolution>1.000000</resolution>
+          <min_angle>0.000000</min_angle>
+          <max_angle>1.57</max_angle>
+      </horizontal>
+      </scan>
+      <range>
+        <min>0.120000</min>
+        <max>5</max>
+        <resolution>0.015000</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
+      <ros>
+        <!-- <namespace>/tb3</namespace> -->
+        <remapping>~/out:=scan1</remapping>
+      </ros>
+      <output_type>sensor_msgs/LaserScan</output_type>
+      <frame_name>base_scan1</frame_name>
+    </plugin>
+  </sensor>
+</link>
+
+<link name="laser2_link">
+    <sensor name="hls_lfcd_lds2" type="ray">
+    <always_on>true</always_on>
+    <visualize>true</visualize>
+    <pose>0 2 3 3.14 1.57 0</pose>
+    <update_rate>5</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>180</samples>
+          <resolution>1.000000</resolution>
+          <min_angle>0.000000</min_angle>
+          <max_angle>1.57</max_angle>
+      </horizontal>
+      </scan>
+      <range>
+        <min>0.120000</min>
+        <max>5</max>
+        <resolution>0.015000</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
+      <ros>
+        <remapping>~/out:=scan2</remapping>
+      </ros>
+      <output_type>sensor_msgs/LaserScan</output_type>
+      <frame_name>base_scan2</frame_name>
+    </plugin>
+  </sensor>
+</link>
+
+    <joint name="boxconnect1" type="fixed">
       <pose relative_to="main_base" >0 0 0</pose>
       <parent>main_base</parent>
       <child>laser1_link</child>
@@ -184,7 +188,7 @@
       <pose relative_to="main_base" >0 0 0</pose>
       <parent>main_base</parent>
       <child >side_two</child>
-    </joint> -->
+    </joint>
 
   </model>
 </sdf>

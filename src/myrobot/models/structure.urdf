@@ -82,16 +82,16 @@
         <sensor name="hls_lfcd_lds1" type="ray">
             <always_on>true</always_on>
             <visualize>true</visualize>
-            <pose>0 -2 3 0 0 0</pose>
+            <pose>0 -2 3 0 1.57 0</pose>
             <update_rate>5</update_rate>
             <ray>
                 <scan>
-                    <vertical>
+                    <horizontal>
                         <samples>180</samples>
                         <resolution>1.000000</resolution>
                         <min_angle>0.000000</min_angle>
                         <max_angle>1.57</max_angle>
-                    </vertical>
+                    </horizontal>
                 </scan>
                 <range>
                     <min>0.120000</min>
@@ -124,12 +124,12 @@
             <update_rate>5</update_rate>
             <ray>
                 <scan>
-                    <vertical>
+                    <horizontal>
                         <samples>180</samples>
                         <resolution>1.000000</resolution>
                         <min_angle>0.000000</min_angle>
                         <max_angle>1.57</max_angle>
-                    </vertical>
+                    </horizontal>
                 </scan>
                 <range>
                     <min>0.120000</min>
