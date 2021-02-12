@@ -28,7 +28,7 @@ package_name = 'myrobot'
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
-    world_file_name = 'burger.model'
+    world_file_name = 'main.model'
     world = os.path.join(get_package_share_directory(package_name),
                          'models', world_file_name)
     launch_file_dir = os.path.join(get_package_share_directory(package_name), 'launch')
@@ -49,7 +49,7 @@ def generate_launch_description():
         ),
 
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([launch_file_dir, '/robot_state_publisher.launch.py']),
+            PythonLaunchDescriptionSource([launch_file_dir, '/struct_state_publisher.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time}.items(),
         ),
         

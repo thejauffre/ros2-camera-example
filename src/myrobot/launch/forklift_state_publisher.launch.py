@@ -25,6 +25,7 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 package_name = 'myrobot'
+namespace = 'forklift'
 
 
 def generate_launch_description():
@@ -59,7 +60,7 @@ def generate_launch_description():
             description='Use simulation (Gazebo) clock if true'),
 
         Node(
-            namespace="forklift",
+            namespace = namespace,
             package='robot_state_publisher',
             executable='robot_state_publisher',
             name='forklift_state_publisher',
@@ -69,35 +70,43 @@ def generate_launch_description():
 
 ## Static links transforms
         Node(
-            namespace="forklift",
+            namespace = namespace,
             package='tf2_ros',
             executable='static_transform_publisher',
-            name='forklift_static_transform_publisher',
+            name='forklift_static_transform_publisher1',
             output='screen',
             arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_chassis, link_main],
         ),
         Node(
-            namespace="forklift",
+            namespace = namespace,
             package='tf2_ros',
             executable='static_transform_publisher',
-            name='forklift_static_transform_publisher',
+            name='forklift_static_transform_publisher2',
             output='screen',
             arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_right, link_chassis],
         ),
         Node(
-            namespace="forklift",
+            namespace = namespace,
             package='tf2_ros',
             executable='static_transform_publisher',
-            name='forklift_static_transform_publisher',
+            name='forklift_static_transform_publisher3',
             output='screen',
             arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_left, link_chassis],
         ),
         Node(
-            namespace="forklift",
+            namespace = namespace,
             package='tf2_ros',
             executable='static_transform_publisher',
-            name='forklift_static_transform_publisher',
+            name='forklift_static_transform_publisher4',
             output='screen',
             arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_back, link_chassis],
         ),
+## Joint state publisher
+        Node(
+            namespace = namespace,
+            package='joint_state_publisher',
+            executable='joint_state_publisher',
+            name='joint_state_publisher',
+            parameters=[{'use_sim_time': use_sim_time}],
+        )
     ])

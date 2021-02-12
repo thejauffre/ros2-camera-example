@@ -1,4 +1,5 @@
-<robot name="forklift">
+<?xml version="1.0" ?>
+<robot name="forklift" xmlns:xacro="http://ros.org/wiki/xacro">
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <scale>1.2 1.2 1.2</scale>
     <namespace>/forklift</namespace>
@@ -72,7 +73,7 @@
       <geometry>
         <mesh filename="package://myrobot/models/forklift/meshes/forklift_left_wheel.stl" scale="0.01 0.01 0.01"/>
       </geometry>
-      <material name="dark"/>
+      <material name="blue"/>
     </visual>
 
     <collision>
@@ -94,7 +95,7 @@
       <geometry>
         <mesh filename="package://myrobot/models/forklift/meshes/forklift_right_wheel.stl" scale="0.01 0.01 0.01"/>
       </geometry>
-      <material name="dark"/>
+      <material name="blue"/>
     </visual>
 
     <collision>
