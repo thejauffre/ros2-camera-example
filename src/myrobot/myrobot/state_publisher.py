@@ -12,7 +12,7 @@ class StatePublisher(Node):
 
   def __init__(self):
       rclpy.init()
-      super().__init__('state_publisher')
+      super().__init__('joint_state_publisher')
 
       qos_profile = QoSProfile(depth=10)
       self.joint_pub = self.create_publisher(JointState, 'joint_states', qos_profile)
@@ -44,7 +44,7 @@ class StatePublisher(Node):
               # update joint_state
               now = self.get_clock().now()
               joint_state.header.stamp = now.to_msg()
-              joint_state.name = ['swivel', 'tilt', 'periscope']
+              joint_state.name = ['right_wheel_joint', 'left_wheel_joint', 'back_wheel_joint']
               joint_state.position = [swivel, tilt, height]
 
               # update transform

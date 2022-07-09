@@ -69,39 +69,39 @@ def generate_launch_description():
             arguments=[urdf]),
 
 ## Static links transforms
-        Node(
-            namespace = namespace,
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            name='forklift_static_transform_publisher1',
-            output='screen',
-            arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_chassis, link_main],
-        ),
-        Node(
-            namespace = namespace,
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            name='forklift_static_transform_publisher2',
-            output='screen',
-            arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_right, link_chassis],
-        ),
-        Node(
-            namespace = namespace,
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            name='forklift_static_transform_publisher3',
-            output='screen',
-            arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_left, link_chassis],
-        ),
-        Node(
-            namespace = namespace,
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            name='forklift_static_transform_publisher4',
-            output='screen',
-            arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_back, link_chassis],
-        ),
-## Joint state publisher
+        # Node(
+        #     namespace = namespace,
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     name='forklift_static_transform_publisher1',
+        #     output='screen',
+        #     arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_chassis, link_main],
+        # ),
+        # Node(
+        #     namespace = namespace,
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     name='forklift_static_transform_publisher2',
+        #     output='screen',
+        #     arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_right, link_chassis],
+        # ),
+        # Node(
+        #     namespace = namespace,
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     name='forklift_static_transform_publisher3',
+        #     output='screen',
+        #     arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_left, link_chassis],
+        # ),
+        # Node(
+        #     namespace = namespace,
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     name='forklift_static_transform_publisher4',
+        #     output='screen',
+        #     arguments=[x_0, y_0, z_0, yaw_0, pitch_0, roll_0, link_back, link_chassis],
+        # ),
+# Joint state publisher
         Node(
             namespace = namespace,
             package='joint_state_publisher',
